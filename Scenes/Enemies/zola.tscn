@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bas1ro5huxs1q"]
+
+[ext_resource type="Script" uid="uid://bddgy5a8brwvi" path="res://Scripts/Enemies/zola.gd" id="1_2gm8o"]
+[ext_resource type="Texture2D" uid="uid://1ib226cq2oru" path="res://Assets/Enemies/Zola.png" id="1_go1dw"]
+[ext_resource type="PackedScene" uid="uid://bloxpjmqs5560" path="res://Scenes/Enemies/fireball.tscn" id="2_joghu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gm8o"]
+atlas = ExtResource("1_go1dw")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_joghu"]
+atlas = ExtResource("1_go1dw")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpjtb"]
+atlas = ExtResource("1_go1dw")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vnl7"]
+atlas = ExtResource("1_go1dw")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ctcfc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gm8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_joghu")
+}],
+"loop": 1,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gpjtb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vnl7")
+}],
+"loop": 1,
+"name": &"hidden",
+"speed": 5.0
+}]
+
+[node name="Zola" type="CharacterBody2D" unique_id=1541917019]
+scale = Vector2(0.125, 0.125)
+script = ExtResource("1_2gm8o")
+projectile_scene = ExtResource("2_joghu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=432193999]
+sprite_frames = SubResource("SpriteFrames_ctcfc")
+animation = &"attack"
+
+[node name="Timer" type="Timer" parent="." unique_id=1739220505]

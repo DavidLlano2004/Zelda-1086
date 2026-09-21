@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bloxpjmqs5560"]
+
+[ext_resource type="Texture2D" uid="uid://bnjwjmcla8amn" path="res://Assets/Enemies/Zola_proyectiles.png" id="1_vrmbb"]
+[ext_resource type="Script" uid="uid://d3imi4pp0qpx2" path="res://Scripts/Enemies/fireball.gd" id="1_vvw1v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvw1v"]
+atlas = ExtResource("1_vrmbb")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t5ui"]
+atlas = ExtResource("1_vrmbb")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ts2yt"]
+atlas = ExtResource("1_vrmbb")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tlxu"]
+atlas = ExtResource("1_vrmbb")
+region = Rect2(192, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vu8i7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvw1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t5ui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ts2yt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tlxu")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vu8i7"]
+radius = 5.0990195
+
+[node name="Fireball" type="Area2D" unique_id=49149769]
+script = ExtResource("1_vvw1v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1834056113]
+scale = Vector2(0.125, 0.125)
+sprite_frames = SubResource("SpriteFrames_vu8i7")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=721561660]
+shape = SubResource("CircleShape2D_vu8i7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1878527541]
+position = Vector2(2, 5)
+rect = Rect2(-7, -10, 10, 10)

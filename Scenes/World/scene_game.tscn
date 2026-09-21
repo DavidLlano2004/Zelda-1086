@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://c5myl7p8oj28l"]
+
+[ext_resource type="Texture2D" uid="uid://5douipq8ht2p" path="res://Assets/Maps/ZeldaOverworldMapQ1A.png" id="1_8bjky"]
+[ext_resource type="PackedScene" uid="uid://j7rbq80ks73i" path="res://Scenes/World/player.tscn" id="2_ug87e"]
+[ext_resource type="Script" uid="uid://bhmt46bod2sw6" path="res://Scripts/World/screen_transition.gd" id="3_ug87e"]
+[ext_resource type="PackedScene" uid="uid://grt8r0mevoyt" path="res://Scenes/Enemies/octorok_red.tscn" id="4_mohre"]
+[ext_resource type="PackedScene" uid="uid://bas1ro5huxs1q" path="res://Scenes/Enemies/zola.tscn" id="5_kwp2x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vu8i7"]
+size = Vector2(256, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctcfc"]
+size = Vector2(256, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jlkfn"]
+size = Vector2(5, 176)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40v53"]
+size = Vector2(5, 176)
+
+[node name="Scene game" type="Node2D" unique_id=1242696722]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1903135200]
+modulate = Color(1, 1, 1, 0.6509804)
+position = Vector2(-256, 0)
+texture = ExtResource("1_8bjky")
+centered = false
+
+[node name="Player" parent="." unique_id=553354003 groups=["player"] instance=ExtResource("2_ug87e")]
+position = Vector2(2237, 452)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=996874471]
+position = Vector2(2047, 381)
+anchor_mode = 0
+
+[node name="ScreenTransition" type="Node2D" parent="Camera2D" unique_id=1598600595]
+script = ExtResource("3_ug87e")
+
+[node name="Area2D_UP" type="Area2D" parent="Camera2D/ScreenTransition" unique_id=2017107745]
+position = Vector2(128, 0)
+collision_layer = 524288
+collision_mask = 514
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/ScreenTransition/Area2D_UP" unique_id=1290090332]
+shape = SubResource("RectangleShape2D_vu8i7")
+
+[node name="Area2D_DOWN" type="Area2D" parent="Camera2D/ScreenTransition" unique_id=34934677]
+position = Vector2(128, 176)
+collision_layer = 524288
+collision_mask = 515
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/ScreenTransition/Area2D_DOWN" unique_id=917328422]
+shape = SubResource("RectangleShape2D_ctcfc")
+
+[node name="Area2D_LEFT" type="Area2D" parent="Camera2D/ScreenTransition" unique_id=1336441304]
+position = Vector2(0, 88)
+collision_layer = 524289
+collision_mask = 514
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/ScreenTransition/Area2D_LEFT" unique_id=1400231995]
+shape = SubResource("RectangleShape2D_jlkfn")
+
+[node name="Area2D_RIGHT" type="Area2D" parent="Camera2D/ScreenTransition" unique_id=1492545696]
+position = Vector2(256, 88)
+collision_layer = 524288
+collision_mask = 514
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/ScreenTransition/Area2D_RIGHT" unique_id=652059157]
+shape = SubResource("RectangleShape2D_40v53")
+
+[node name="OctorokRed" parent="." unique_id=1249791933 instance=ExtResource("4_mohre")]
+position = Vector2(2173, 408)
+collision_layer = 2
+collision_mask = 524289
+
+[node name="OctorokRed2" parent="." unique_id=293274179 instance=ExtResource("4_mohre")]
+position = Vector2(2192, 464)
+collision_layer = 2
+collision_mask = 524289
+
+[node name="OctorokRed3" parent="." unique_id=1570275836 instance=ExtResource("4_mohre")]
+position = Vector2(2252, 409)
+collision_layer = 2
+collision_mask = 524289
+
+[node name="OctorokRed4" parent="." unique_id=1950733640 instance=ExtResource("4_mohre")]
+position = Vector2(2090, 411)
+collision_layer = 2
+collision_mask = 524289
+
+[node name="Zola" parent="." unique_id=1541917019 instance=ExtResource("5_kwp2x")]
+position = Vector2(2133, 468)
+
+[connection signal="body_entered" from="Camera2D/ScreenTransition/Area2D_UP" to="Camera2D/ScreenTransition" method="_on_area_2d_up_body_entered"]
+[connection signal="body_entered" from="Camera2D/ScreenTransition/Area2D_DOWN" to="Camera2D/ScreenTransition" method="_on_area_2d_down_body_entered"]
+[connection signal="body_entered" from="Camera2D/ScreenTransition/Area2D_LEFT" to="Camera2D/ScreenTransition" method="_on_area_2d_left_body_entered"]
+[connection signal="body_entered" from="Camera2D/ScreenTransition/Area2D_RIGHT" to="Camera2D/ScreenTransition" method="_on_area_2d_right_body_entered"]
